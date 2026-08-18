@@ -1,11 +1,145 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// src/pages/index.astro
+import '../styles/global.css';
+import { createClient } from '@sanity/client';
+import imageUrlBuilder from '@sanity/image-url';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const client = createClient({
+  projectId: '7524k6a3',
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-03-01',
+});
+
+// Fetch your profile document from Sanity
+const profile = await client.fetch(`*[_type == "profile"][0]`);
+
+const builder = imageUrlBuilder(client);
+function urlFor(source) {
+  if (!source) return null;
+  return builder.image(source).width(200).height(200).url();
+}
+
+const portraitUrl = profile?.portrait ? urlFor(profile.portrait) : null;
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{profile?.name || "Tim Ellis"} — Digital Operator</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-[#F6F5F0] text-[#1A1A1A] antialiased font-['Space_Grotesk',sans-serif] selection:bg-[#C85232] selection:text-white">
+
+		<main class="max-w-[720px] mx-auto px-6 py-16 md:py-28 space-y-16">
+
+			<!-- HERO / INTRO WITH PORTRAIT -->
+			<section class="space-y-6">
+				<div class="flex items-center gap-6">
+					<div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#EAE6DF] border border-[#DCD6CD] flex-shrink-0 flex items-center justify-center text-[10px] text-[#7A756B] text-center overflow-hidden shadow-xs">
+						{portraitUrl ? (
+							<img src={portraitUrl} alt={profile?.name} class="w-full h-full object-cover" />
+						) : (
+							<span>[ Portrait ]</span>
+						)}
+					</div>
+					<div>
+						<h1 class="text-4xl sm:text-5xl font-normal tracking-tight text-[#1A1A1A] font-['Newsreader',serif] leading-[1.05]">
+							Hey, I’m {profile?.name || "Tim"}.
+						</h1>
+					</div>
+				</div>
+				<p class="text-xl text-[#4A473F] font-light leading-relaxed">
+					{profile?.bio || "I’m a digital operator based in Geelong, Australia."}
+				</p>
+			</section>
+
+			<!-- TIM AT A GLANCE (Dynamic) -->
+			{profile?.atAGlance && profile.atAGlance.length > 0 && (
+				<section class="bg-white p-8 sm:p-10 rounded-3xl border border-[#E6E2D8] shadow-xs space-y-6">
+					<h2 class="text-lg font-['Newsreader',serif] font-medium text-[#1A1A1A] tracking-tight">Tim at a glance</h2>
+					<ul class="space-y-4 text-base text-[#3A3832]">
+						{profile.atAGlance.map((item) => (
+							<li class="flex items-start gap-3">
+								<span class="text-[#C85232] font-bold">{item.emoji}</span>
+								<div><strong class="text-[#1A1A1A] font-medium">{item.label}:</strong> {item.value}</div>
+							</li>
+						))}
+					</ul>
+				</section>
+			)}
+
+			<!-- WHAT I DO (Dynamic Capabilities) -->
+			{profile?.capabilities && profile.capabilities.length > 0 && (
+				<section class="bg-white p-8 sm:p-10 rounded-3xl border border-[#E6E2D8] shadow-xs space-y-8">
+					<div class="space-y-1">
+						<span class="text-xs font-semibold tracking-widest uppercase text-[#7A756B]">Professional Capabilities</span>
+						<h2 class="text-2xl sm:text-3xl font-['Newsreader',serif] font-normal text-[#1A1A1A] tracking-tight">What I do</h2>
+					</div>
+					<div class="space-y-6">
+						{profile.capabilities.map((cap) => (
+							<div class="space-y-1">
+								<h3 class="font-medium text-[#1A1A1A] text-base">{cap.title}</h3>
+								<p class="text-sm text-[#4A473F] leading-relaxed font-light">{cap.description}</p>
+							</div>
+						))}
+					</div>
+				</section>
+			)}
+
+			<!-- PROJECTS & PUBLISHING (Dynamic) -->
+			{profile?.projects && profile.projects.length > 0 && (
+				<section class="space-y-6">
+					<div class="space-y-1">
+						<span class="text-xs font-semibold tracking-widest uppercase text-[#7A756B]">Tangible Work & Assets</span>
+						<h2 class="text-2xl sm:text-3xl font-['Newsreader',serif] font-normal text-[#1A1A1A] tracking-tight">Projects & Publishing</h2>
+					</div>
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+						{profile.projects.map((proj) => (
+							<div class="bg-white p-6 rounded-2xl border border-[#E6E2D8] shadow-xs space-y-3 flex flex-col justify-between">
+								<div class="space-y-2">
+									<span class="text-[10px] uppercase font-semibold tracking-widest px-2.5 py-1 rounded-full bg-[#F6F5F0] text-[#7A756B] inline-block">{proj.category}</span>
+									<h3 class="font-medium text-[#1A1A1A] text-lg font-['Newsreader',serif]">{proj.title}</h3>
+									<p class="text-sm text-[#4A473F] leading-relaxed font-light">{proj.description}</p>
+								</div>
+								{proj.url && (
+									<a href={proj.url} target="_blank" rel="noreferrer" class="text-xs font-medium text-[#C85232] hover:underline inline-flex items-center gap-1 pt-2">
+										{proj.linkText || "View ↗"}
+									</a>
+								)}
+							</div>
+						))}
+					</div>
+				</section>
+			)}
+
+			<!-- CONTACT -->
+			<section id="contact" class="space-y-4 pt-6 border-t border-[#DCD6CD]">
+				<h2 class="text-2xl sm:text-3xl font-['Newsreader',serif] font-normal text-[#1A1A1A] tracking-tight">Get in touch</h2>
+				<p class="text-[#4A473F] leading-relaxed font-light">
+					Have an interesting problem, a project worth exploring, or just want to say g'day?
+				</p>
+				<div class="flex items-center gap-6 pt-2">
+					<a href="mailto:tim@timellis.au" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#C85232] text-white text-sm font-medium hover:bg-[#b04529] transition-all shadow-xs">
+						Email me →
+					</a>
+					<a href="https://linkedin.com" target="_blank" rel="noreferrer" class="text-sm font-medium text-[#1A1A1A] hover:underline underline-offset-4 decoration-[#C85232]">
+						LinkedIn ↗
+					</a>
+				</div>
+			</section>
+
+		</main>
+
+		<!-- Footer -->
+		<footer class="max-w-[720px] mx-auto px-6 py-12 text-xs text-[#7A756B] border-t border-[#DCD6CD] flex justify-between items-center">
+			<p>© {new Date().getFullYear()} Tim Ellis</p>
+			<p>Built with Astro & Tailwind</p>
+		</footer>
+
+	</body>
+</html>

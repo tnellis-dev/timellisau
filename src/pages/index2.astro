@@ -1,0 +1,159 @@
+---
+// src/pages/index.astro
+import '../styles/global.css';
+---
+
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tim Ellis</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-[#F6F5F0] text-[#1A1A1A] antialiased font-['Space_Grotesk',sans-serif] selection:bg-[#C85232] selection:text-white">
+
+		<main class="max-w-[720px] mx-auto px-6 py-16 md:py-28 space-y-16">
+
+			<!-- HERO / INTRO WITH PORTRAIT NEXT TO NAME -->
+			<section class="space-y-6">
+				<div class="flex items-center gap-6">
+					<!-- Portrait Placeholder -->
+					<div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#EAE6DF] border border-[#DCD6CD] flex-shrink-0 flex items-center justify-center text-[10px] text-[#7A756B] text-center p-2 overflow-hidden shadow-xs">
+						<span>[ Portrait ]</span>
+					</div>
+					<div>
+						<h1 class="text-4xl sm:text-5xl font-normal tracking-tight text-[#1A1A1A] font-['Newsreader',serif] leading-[1.05]">
+							Hey, I’m Tim.
+						</h1>
+					</div>
+				</div>
+				<p class="text-xl text-[#4A473F] font-light leading-relaxed">
+					I’m a digital operator based in Geelong, Australia. I love using digital leverage to research, publish, build assets, and help people make sense of complex problems.
+				</p>
+			</section>
+
+			<!-- TIM AT A GLANCE -->
+			<section class="bg-white p-8 sm:p-10 rounded-3xl border border-[#E6E2D8] shadow-xs space-y-6">
+				<h2 class="text-lg font-['Newsreader',serif] font-medium text-[#1A1A1A] tracking-tight">Tim at a glance</h2>
+				
+				<ul class="space-y-4 text-base text-[#3A3832]">
+					<li class="flex items-start gap-3">
+						<span class="text-[#C85232] font-bold">📍</span>
+						<div><strong class="text-[#1A1A1A] font-medium">Based in:</strong> Geelong, Victoria.</div>
+					</li>
+					<li class="flex items-start gap-3">
+						<span class="text-[#C85232] font-bold">💼</span>
+						<div><strong class="text-[#1A1A1A] font-medium">What I do:</strong> Digital optimization, analytics, and experience design.</div>
+					</li>
+					<li class="flex items-start gap-3">
+						<span class="text-[#C85232] font-bold">✍️</span>
+						<div><strong class="text-[#1A1A1A] font-medium">Projects:</strong> Writing <a href="#" class="underline underline-offset-4 decoration-[#C85232]/50 hover:decoration-[#C85232] text-[#1A1A1A]">The Geelong Gist</a>, <a href="#" class="underline underline-offset-4 decoration-[#C85232]/50 hover:decoration-[#C85232] text-[#1A1A1A]">Dad Investor</a>, and building digital assets.</div>
+					</li>
+					<li class="flex items-start gap-3">
+						<span class="text-[#C85232] font-bold">🏉</span>
+						<div><strong class="text-[#1A1A1A] font-medium">Weekend:</strong> Field umpiring senior men's footy for the GFUL (GDFL, BFL, GFL).</div>
+					</li>
+					<li class="flex items-start gap-3">
+						<span class="text-[#C85232] font-bold">🌱</span>
+						<div><strong class="text-[#1A1A1A] font-medium">Interests:</strong> Home improvements, gardening, tech/AI tinkering, and films.</div>
+					</li>
+				</ul>
+			</section>
+
+			<!-- WHAT I DO (Professional Capabilities Card) -->
+			<section class="bg-white p-8 sm:p-10 rounded-3xl border border-[#E6E2D8] shadow-xs space-y-6">
+				<div class="space-y-1">
+					<span class="text-xs font-semibold tracking-widest uppercase text-[#7A756B]">Professional Capabilities</span>
+					<h2 class="text-2xl sm:text-3xl font-['Newsreader',serif] font-normal text-[#1A1A1A] tracking-tight">What I do</h2>
+				</div>
+				<div class="space-y-6 divide-y divide-[#E6E2D8]">
+					<div class="pt-4 first:pt-0 space-y-1">
+						<h3 class="font-medium text-[#1A1A1A] text-base">Digital & Customer Experience</h3>
+						<p class="text-sm text-[#4A473F] leading-relaxed font-light">Understanding how people interact with digital experiences and identifying opportunities to improve them.</p>
+					</div>
+					<div class="pt-4 space-y-1">
+						<h3 class="font-medium text-[#1A1A1A] text-base">Analytics & Measurement</h3>
+						<p class="text-sm text-[#4A473F] leading-relaxed font-light">Turning data into useful information that helps people around me make better decisions.</p>
+					</div>
+					<div class="pt-4 space-y-1">
+						<h3 class="font-medium text-[#1A1A1A] text-base">Optimisation & Experimentation</h3>
+						<p class="text-sm text-[#4A473F] leading-relaxed font-light">Testing ideas, measuring outcomes and learning what actually works.</p>
+					</div>
+					<div class="pt-4 space-y-1">
+						<h3 class="font-medium text-[#1A1A1A] text-base">Technology & AI</h3>
+						<p class="text-sm text-[#4A473F] leading-relaxed font-light">Exploring practical ways technology can make work simpler, faster and more useful.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- PROJECTS & PUBLISHING (Tangible Websites & Digital Products - 2-Column Grid) -->
+			<section class="space-y-6">
+				<div class="space-y-1">
+					<span class="text-xs font-semibold tracking-widest uppercase text-[#7A756B]">Tangible Work & Assets</span>
+					<h2 class="text-2xl sm:text-3xl font-['Newsreader',serif] font-normal text-[#1A1A1A] tracking-tight">Projects & Publishing</h2>
+				</div>
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					<div class="bg-white p-6 rounded-2xl border border-[#E6E2D8] shadow-xs space-y-3 flex flex-col justify-between">
+						<div class="space-y-2">
+							<span class="text-[10px] uppercase font-semibold tracking-widest px-2.5 py-1 rounded-full bg-[#F6F5F0] text-[#7A756B] inline-block">Blog</span>
+							<h3 class="font-medium text-[#1A1A1A] text-lg font-['Newsreader',serif]">Dad Investor</h3>
+							<p class="text-sm text-[#4A473F] leading-relaxed font-light">Exploring investing, financial independence and the way people think about money.</p>
+						</div>
+						<a href="#" class="text-xs font-medium text-[#C85232] hover:underline inline-flex items-center gap-1 pt-2">Visit site ↗</a>
+					</div>
+					<div class="bg-white p-6 rounded-2xl border border-[#E6E2D8] shadow-xs space-y-3 flex flex-col justify-between">
+						<div class="space-y-2">
+							<span class="text-[10px] uppercase font-semibold tracking-widest px-2.5 py-1 rounded-full bg-[#F6F5F0] text-[#7A756B] inline-block">Newsletter</span>
+							<h3 class="font-medium text-[#1A1A1A] text-lg font-['Newsreader',serif]">The Geelong Gist</h3>
+							<p class="text-sm text-[#4A473F] leading-relaxed font-light">A weekly local newsletter going out to the community.</p>
+						</div>
+						<a href="#" class="text-xs font-medium text-[#C85232] hover:underline inline-flex items-center gap-1 pt-2">Read issue ↗</a>
+					</div>
+					<div class="bg-white p-6 rounded-2xl border border-[#E6E2D8] shadow-xs space-y-3 flex flex-col justify-between">
+						<div class="space-y-2">
+							<span class="text-[10px] uppercase font-semibold tracking-widest px-2.5 py-1 rounded-full bg-[#F6F5F0] text-[#7A756B] inline-block">Digital Product</span>
+							<h3 class="font-medium text-[#1A1A1A] text-lg font-['Newsreader',serif]">Searchlight Web</h3>
+							<p class="text-sm text-[#4A473F] leading-relaxed font-light">A small scale digital product offer for local businesses and organisations.</p>
+						</div>
+						<a href="#" class="text-xs font-medium text-[#C85232] hover:underline inline-flex items-center gap-1 pt-2">Explore offer ↗</a>
+					</div>
+					<div class="bg-white p-6 rounded-2xl border border-[#E6E2D8] shadow-xs space-y-3 flex flex-col justify-between">
+						<div class="space-y-2">
+							<span class="text-[10px] uppercase font-semibold tracking-widest px-2.5 py-1 rounded-full bg-[#F6F5F0] text-[#7A756B] inline-block">Writing</span>
+							<h3 class="font-medium text-[#1A1A1A] text-lg font-['Newsreader',serif]">Substacks</h3>
+							<p class="text-sm text-[#4A473F] leading-relaxed font-light">Thoughts out in the world.</p>
+						</div>
+						<a href="#" class="text-xs font-medium text-[#C85232] hover:underline inline-flex items-center gap-1 pt-2">Browse posts ↗</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- CONTACT -->
+			<section id="contact" class="space-y-4 pt-6 border-t border-[#DCD6CD]">
+				<h2 class="text-2xl sm:text-3xl font-['Newsreader',serif] font-normal text-[#1A1A1A] tracking-tight">Get in touch</h2>
+				<p class="text-[#4A473F] leading-relaxed font-light">
+					Have an interesting problem, a project worth exploring, or just want to say g'day?
+				</p>
+				<div class="flex items-center gap-6 pt-2">
+					<a href="mailto:tim@timellis.au" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#C85232] text-white text-sm font-medium hover:bg-[#b04529] transition-all shadow-xs">
+						Email me →
+					</a>
+					<a href="https://linkedin.com" target="_blank" rel="noreferrer" class="text-sm font-medium text-[#1A1A1A] hover:underline underline-offset-4 decoration-[#C85232]">
+						LinkedIn ↗
+					</a>
+				</div>
+			</section>
+
+		</main>
+
+		<!-- Footer -->
+		<footer class="max-w-[720px] mx-auto px-6 py-12 text-xs text-[#7A756B] border-t border-[#DCD6CD] flex justify-between items-center">
+			<p>© {new Date().getFullYear()} Tim Ellis</p>
+			<p>Built with Astro & Tailwind</p>
+		</footer>
+
+	</body>
+</html>
